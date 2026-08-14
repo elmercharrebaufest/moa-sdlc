@@ -12,7 +12,7 @@ soluciones que dependen de MSBuild/Visual Studio.
 - Para soluciones legacy, preferir `MSBuild` en lugar de `dotnet build` cuando
   el proyecto no está basado en SDK-style.
 - Ejemplos:
-  - `msbuild DataAgro.sln /p:Configuration=Debug /p:Platform="Any CPU"`
+  - `msbuild MySolution.sln /p:Configuration=Debug /p:Platform="Any CPU"`
   - `msbuild MyProject.csproj /t:Build /p:Configuration=Release`
 - Si el repositorio usa Web.config, Global.asax, paquetes NuGet antiguos o
   IIS, respetar ese modelo y no convertirlo a ASP.NET Core sin necesidad.
