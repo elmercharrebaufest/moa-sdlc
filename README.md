@@ -71,7 +71,7 @@ dotnet test
 ### .NET Framework legacy
 
 ```bash
-msbuild DataAgro.sln /p:Configuration=Debug /p:Platform="Any CPU"
+msbuild MySolution.sln /p:Configuration=Debug /p:Platform="Any CPU"
 msbuild MyProject.csproj /t:Build /p:Configuration=Release
 ```
 

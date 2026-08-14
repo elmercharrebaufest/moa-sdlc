@@ -4,6 +4,11 @@ Este repositorio usa Spec-Driven Development (SDD). Principio central:
 **el código es un detalle de implementación; la especificación
 en Markdown es la guia del desarrollo del codigo.**
 
+Para mantener el template reusable y genérico, usar nombres como
+`MyProject`, `MySolution` o `MyApp` en lugar de referencias concretas del
+proyecto real (por ejemplo, `DataAgro`). Los ejemplos de feature deben ser
+neutralizados para que sirvan a cualquier solución .NET.
+
 ## El Ciclo PEV (Plan-Execute-Verify)
 
 Toda nueva funcionalidad se estructura en tres fases discretas antes de
