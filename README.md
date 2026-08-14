@@ -168,6 +168,30 @@ spec-author → implementer → tester → reviewer → security-reviewer → hu
 Si falla una etapa, se vuelve al agente responsable y se corrige antes de
 aprovechar el PR final.
 
+### Harness de agentes y estados
+
+Este template también incluye un patrón de harness para IA basado en roles,
+estados y evidencia. Las guías están en:
+
+- `.github/instructions/agent-harness-patterns.instructions.md`
+- `.github/AGENTS-HARNESS.md`
+- `.github/AGENTS-CONTRACTS.md`
+
+Incluye:
+
+- roles claramente separados
+- etapas del ciclo (`draft`, `spec_ready`, `approved`, `in_progress`, `verified`,
+  `reviewed`, `done`)
+- regla de loop y rollback por agente
+- criterios de aceptación por tarea
+- evidencia mínima requerida para avanzar
+- definition of done explícita
+- contratos de entrada/salida por agente
+- allowlist de tools por rol
+- schema formal del estado y reglas de transición
+- runtime audit trail
+- retry/rollback y definición de done machine-readable
+
 ### Si hay que cambiar un controller o endpoint backend
 
 Usar:

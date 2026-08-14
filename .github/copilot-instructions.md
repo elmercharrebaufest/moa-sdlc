@@ -25,6 +25,16 @@ Este repositorio incluye plantillas y guías reutilizables para proyectos
 - `.github/instructions/tooling-rules.instructions.md`:
   reglas de herramientas y calidad: analyzers, SonarQube, warnings as errors,
   pipeline gating y frontend lint/test.
+- `.github/instructions/agent-harness-patterns.instructions.md`:
+  guía de harness para agentes IA: estados, roles, ciclo, evidencia y gate
+  humano.
+- `.github/AGENTS-HARNESS.md`:
+  modelo operativo del harness para equipo y agentes, con estados, roles,
+  transiciones y definition of done.
+- `.github/AGENTS-CONTRACTS.md`:
+  contrato operativo para agentes IA: entrada/salida, criterios de éxito,
+  allowlist de tools, estados formales, audit trail y definición de done
+  estructurada.
 - `.github/instructions/security-review.instructions.md`:
   checklist de seguridad para backend, frontend, APIs, Azure DevOps y despliegue.
 - `.github/instructions/code-quality-review.instructions.md`:
