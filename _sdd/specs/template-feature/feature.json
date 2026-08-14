@@ -1,0 +1,7 @@
+{
+  "jiraKey": "<JIRA-KEY>",
+  "slug": "<slug>",
+  "estado": "draft",
+  "traceability": [],
+  "qaManualPending": []
+}

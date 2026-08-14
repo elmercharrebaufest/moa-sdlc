@@ -1,0 +1,51 @@
+{
+  "jiraKey": "MOA-1765",
+  "slug": "DistribuidorCupos",
+  "estado": "draft",
+  "traceability": [
+    {
+      "requirement": "R11",
+      "type": "manual",
+      "artifacts": [
+        "WebDataAgro/Views/Distribucion/Index.cshtml",
+        "WebDataAgro/Scripts/Distribucion/distribucion-cupos.js"
+      ]
+    },
+    {
+      "requirement": "R16",
+      "type": "manual",
+      "artifacts": [
+        "WebDataAgro/Views/Distribucion/Index.cshtml",
+        "WebDataAgro/App_Start/BundleConfig.cs"
+      ]
+    },
+    {
+      "requirement": "R17",
+      "type": "manual",
+      "artifacts": [
+        "WebDataAgro/Content/distribucion-cupos.css",
+        "WebDataAgro/Content/Images/distribucion-cupos-header-bg.jpg",
+        "WebDataAgro/Content/Images/distribucion-cupos-logo.jpg",
+        "WebDataAgro/Views/Distribucion/Index.cshtml",
+        "WebDataAgro/Scripts/Distribucion/distribucion-cupos.js"
+      ]
+    }
+  ],
+  "qaManualPending": [
+    {
+      "requirement": "R11",
+      "description": "Validar en navegador que Exportar Excel genere Cupos_SL_<fecha>.xlsx con hoja Cupos y ContratoSAP como texto.",
+      "signOff": null
+    },
+    {
+      "requirement": "R16",
+      "description": "Validar que la vista inyecte las 6 URLs API via @Url.Action y que todas las llamadas fetch sean same-origin sin CORS.",
+      "signOff": null
+    },
+    {
+      "requirement": "R17",
+      "description": "Comparar la vista Razor contra el POC y validar paridad visual, fondo estático y ausencia de estilos inline en markup/JS.",
+      "signOff": null
+    }
+  ]
+}
