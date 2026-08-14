@@ -1,0 +1,39 @@
+trigger:
+- main
+- develop
+- feature/*
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+- stage: Build
+  jobs:
+  - job: DotNetBuild
+    steps:
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'sdk'
+        version: '8.x'
+
+    - script: dotnet restore
+      displayName: Restore
+
+    - script: dotnet build --configuration $(buildConfiguration) --no-restore
+      displayName: Build .NET SDK-style projects
+
+    - script: dotnet test --configuration $(buildConfiguration) --no-build --logger trx
+      displayName: Run tests
+
+  - job: LegacyNetBuild
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+    steps:
+    - task: MSBuild@1
+      inputs:
+        solution: '**/*.sln'
+        configuration: '$(buildConfiguration)'
+        msbuildArchitecture: 'x64'
+      displayName: Build legacy .NET solution with MSBuild

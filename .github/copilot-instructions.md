@@ -7,11 +7,46 @@ manual de uso completo en [_sdd/docs/specs.md](../_sdd/docs/specs.md) y
 límites de autonomía en [AGENTS.md](../AGENTS.md). Para arrancar o
 continuar el ciclo de una feature, invocar el prompt `/sdd-workflow`.
 
+## Plantillas y guías aplicables
+
+Este repositorio incluye plantillas y guías reutilizables para proyectos
+.NET y frontend heterogéneos:
+
+- `.github/instructions/net-application-patterns.instructions.md`:
+  guía general para .NET Framework y .NET moderno, MVC, Razor, ASP.NET Core,
+  Angular y validación de arquitectura.
+- `.github/instructions/legacy-dotnet.instructions.md`:
+  reglas específicas para soluciones .NET Framework/legacy que requieren MSBuild,
+  Web.config, MVC 5, Kendo y compatibilidad de contratos.
+- `.github/instructions/angular.instructions.md`:
+  patrones para Angular o SPA.
+- `.github/instructions/azure-devops.instructions.md`:
+  lineamientos para Azure Repos, Azure Pipelines y revisión de PR.
+- `.github/instructions/tooling-rules.instructions.md`:
+  reglas de herramientas y calidad: analyzers, SonarQube, warnings as errors,
+  pipeline gating y frontend lint/test.
+- `.github/instructions/security-review.instructions.md`:
+  checklist de seguridad para backend, frontend, APIs, Azure DevOps y despliegue.
+- `.github/instructions/code-quality-review.instructions.md`:
+  checklist de calidad antes de aceptar cambios, pensado para pasar luego por
+  SonarQube o análisis estático.
+- `.github/prompts/quality-gate-review.prompt.md`:
+  prompt reutilizable para revisión final de PR o diff.
+- `.github/prompts/implementer.prompt.md`: guía para la fase de implementación.
+- `.github/prompts/tester.prompt.md`: guía para pruebas y verificación.
+- `.github/prompts/reviewer.prompt.md`: guía para calidad y trazabilidad.
+- `.github/prompts/security-reviewer.prompt.md`: guía para análisis de seguridad.
+- `_sdd/specs/template-feature/*`:
+  base para tickets con requisitos, diseño, tareas y trazabilidad.
+
 ## Build and Test Commands
 
 ### Building
-Open the solution and build in Visual Studio, or use command line:
+Open the solution and build in Visual Studio, or use command line. For modern
+SDK-style .NET projects use `dotnet build`; for legacy .NET Framework projects use
+`MSBuild` / Visual Studio build agent.
 ```bash
+# .NET modern / SDK-style
 # Build entire solution (Debug)
 dotnet build DataAgro.sln /p:Configuration=Debug
 
@@ -20,6 +55,10 @@ dotnet build DataAgro.sln /p:Configuration=Release
 
 # Build specific project
 dotnet build Molinos.DataAgro.Business/Molinos.DataAgro.Business.csproj
+
+# Legacy .NET Framework / ASP.NET MVC 5
+msbuild DataAgro.sln /p:Configuration=Debug /p:Platform="Any CPU"
+msbuild Molinos.DataAgro.Business/Molinos.DataAgro.Business.csproj /t:Build /p:Configuration=Release
 ```
 
 ### Running Tests

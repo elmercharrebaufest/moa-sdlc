@@ -8,6 +8,28 @@ description: 'Guía al agente a través del ciclo PEV de Spec-Driven Development
 Ejecutá el ciclo PEV descrito en `_sdd/docs/specs.md` para el ticket
 `${input:jiraKey:JIRA-KEY del ticket, ej. MOA-2000}`.
 
+## Roles del ciclo
+
+Usá un conjunto de agentes especializados, no un único agente que haga todo:
+
+- `spec-author`: define requisitos, diseño y tareas.
+- `implementer`: escribe la solución mínima y concreta.
+- `tester`: valida con pruebas unitarias/integración/manuales.
+- `reviewer`: valida calidad, trazabilidad y no regresión.
+- `security-reviewer`: valida riesgos de seguridad y exposición de datos.
+- `human-approver`: aprueba PR, QA manual y sign-off final.
+
+## Loop del ciclo
+
+1. `spec-author` define la especificación y deja la evidencia en `_sdd/specs`.
+2. `implementer` ejecuta `tasks.md` y genera el cambio.
+3. `tester` corre tests y registra evidencia de validación.
+4. `reviewer` revisa calidad, arquitectura y trazabilidad.
+5. `security-reviewer` valida riesgos de seguridad.
+6. El `human-approver` decide si el PR pasa o debe volver al paso anterior.
+7. Si hay defectos, se vuelve al agente responsable del bloque detectado y el
+   ciclo se repite hasta que quede verificado.
+
 Primero, buscá `_sdd/progress/current/${input:jiraKey}.md`:
 - Si no existe, el estado es `draft` → seguí la sección **Fase 1**.
 - Si existe, leé el campo "Estado Actual" y saltá a la sección que

@@ -3,24 +3,29 @@
 ## 1. Mapa de Impacto Técnico
 
 ### 📂 Entidades y Datos
-- **Entidad/DTO:** `Molinos.DataAgro.Entities/<Nombre>.cs`
-- **Cambio en el DbContext:** `Molinos.DataAgro.Repository/DataAgroDbContext.cs`
+- **Entidad/DTO:** `Entities/<Nombre>.cs` o `Models/<Nombre>.cs`
+- **Cambio en el DbContext / ORM:** `Repository/<Context>.cs` o la capa de acceso
+  correspondiente.
   (solo si aplica; migraciones de EF requieren aprobación humana, ver AGENTS.md)
 
 ### 📂 Lógica de Negocio
-- **Manager:** `Molinos.DataAgro.Business/Managers/<Nombre>Manager.cs`
-  (implementa `I<Nombre>Manager` en `Molinos.DataAgro.Interfaces`,
-  auto-registrado por Autofac)
+- **Servicio / Manager / UseCase:** `Business/<Nombre>Manager.cs` o
+  `Application/<Nombre>Service.cs`.
+- **Contratos de interfaz:** `Interfaces/I<Nombre>Manager.cs` / `Contracts`.
+- **Patrón de inyección de dependencias**: constructor injection, no new
+  instancias directas dentro de la capa de negocio.
 
 ### 📂 Acceso a Datos
-- **Repositorio:** uso de `IRepositorio` / `RepositorioEF`
-  (`Molinos.DataAgro.Repository`)
+- **Repositorio / DAO:** uso de EF, Dapper, ADO.NET o `IRepositorio` según la
+  tecnología adoptada por el proyecto.
+- **Abstracción:** evitar lógica de persistencia mezclada con la capa web o UI.
 
-### 📂 Web (MVC + Kendo UI)
-- **Controlador:** `WebDataAgro/Controllers/<Nombre>Controller.cs`
-  (Acción: `<Verbo> /<Controller>/<Action>`)
-- **Vista:** `WebDataAgro/Views/<Nombre>/<Accion>.cshtml`
-  (Kendo Grid / jQuery AJAX si aplica)
+### 📂 Web / Frontend
+- **MVC / Razor / ASP.NET Core:** `Controllers/<Nombre>Controller.cs`,
+  `Views/<Nombre>/<Accion>.cshtml` o `Pages/...`.
+- **Angular / SPA:** `components`, `services`, `models`, `guards`, `interceptors`.
+- **Legacy jQuery/Kendo**: mantener patrones actuales del proyecto; si se
+  usa, documentar la ruta de serialización, AJAX y validación.
 
 ## 2. Contrato de Datos
 
@@ -40,7 +45,11 @@
 ```
 
 ## 3. Estrategia de Pruebas
-- Tests NUnit en `Molinos.DataAgro.Test`, con Moq para mockear
-  `Manager`/`IRepositorio` según el patrón existente en el proyecto.
-- Flujos de UI (Kendo/vistas MVC) que no se puedan cubrir con NUnit se
-  documentan como requisito tipo `manual` en `requirements.md`.
+- Tests unitarios y de integración según el stack del proyecto: NUnit/XUnit/
+  MSTest para .NET, además de tests de UI o E2E para frontend si aplica.
+- Usar mocks / stubs para capas externas (`IRepositorio`, `HttpClient`,
+  `IService`, `DataContext`) y mantener los tests enfocados en la lógica.
+- Flujos de UI (Kendo, MVC legacy, Razor, Angular) que no se puedan cubrir
+  automáticamente se documentan como requisito tipo `manual` en
+  `requirements.md`.
+- Registrar en `feature.json` la trazabilidad R<n> → tests y QA manual.
